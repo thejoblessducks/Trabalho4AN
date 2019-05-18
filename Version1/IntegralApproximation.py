@@ -6,6 +6,7 @@ from scipy.optimize import fminbound as fmin
 
 import matplotlib.pyplot as plt 
 from prettytable import PrettyTable as PT
+from time import localtime, strftime
 
 import numpy as np
 import decimal as dm
@@ -112,10 +113,16 @@ def draw(a,b,n):
         plt.plot([c,c],[0,f((c+d)/2)],color='blue')
         plt.plot([d,d],[0,f(d)],color='blue')
         plt.plot([c,d],[f((c+d)/2),f((c+d)/2)],color='blue')
-    plt.show()
+    plt.savefig("./Images/RectangleDraw_N"+str(n)+"_"+strftime("%Y%m%d_%H%M%S", localtime())+".png",dpi=300, bbox_inches="tight")
+    plt.cla()
+    plt.clf()
+    plt.close()
 
 
 
 #-------------------------------------------------------------------------------
+disp = input("Display Rectangles Graph? (yes/no)")
+disp = disp == 'yes'
+print
 simpson(0,1,[7,12])#apply simpson to error 7 and 12 in [0,1]
-rectangle(0,1,20,d=False) #apply rectangle in [0,1] in n points n=1(1)20
+rectangle(0,1,20,d=disp) #apply rectangle in [0,1] in n points n=1(1)20
