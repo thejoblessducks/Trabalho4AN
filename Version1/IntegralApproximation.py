@@ -40,7 +40,7 @@ Simpson Rule for Integration Approximation
 def simpson(a,b,errors):
     table = PT()
     table.title = "Numerical Approximation for Integration using Simpson Rule"
-    table.field_names = ["Error","N","Approximation"]
+    table.field_names = ["Error","N","Approximation M="+str(M(a,b))]
 
     for e in errors:
         s,n = simpsonRule(a,b,e)
@@ -77,7 +77,7 @@ def rectangle(a,b,k,d=True):
 
     table = PT()
     table.title = "Numerical Approximation for Integration using Rectangles"
-    table.field_names = ["N","Approximation","Error"]
+    table.field_names = ["N","Approximation M="+str(m),"Error"]
 
     for i in range(1,k+1):
         s,e = rectangleRule(a,b,i,m,d);
