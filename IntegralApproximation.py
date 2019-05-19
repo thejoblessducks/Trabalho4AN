@@ -52,7 +52,9 @@ def simpson(a,b,errors):
 def determineNSimpson(a,b,e):
     m = M(a,b)
     v = (np.power((b-a),5)*m)/(e*180)
-    return int(np.power(v,(1./4.)))
+    v = np.power(v,(1./4.))
+    m = int(v)+2 if v%2==0 else int(v)+1
+    return m
 
 #Actual method
 def simpsonRule(a,b,e):
