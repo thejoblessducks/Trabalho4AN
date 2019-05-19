@@ -105,7 +105,7 @@ def draw(a,b,n):
     plt.plot(v,f(v),color='red')
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.title('Numerical approximation: Rectangular')
+    plt.title('Numerical approximation: Rectangular, N='+str(n))
     for i in range(1,len(v)):
         c = v[i-1]
         d = v[i]
