@@ -43,8 +43,8 @@ def simpson(a,b,errors):
     table.field_names = ["Error","N","Approximation M="+str(M(a,b))]
 
     for e in errors:
-        s,n = simpsonRule(a,b,e+1)
-        table.add_row([str(error(e+1)),str(n),str(dm.Decimal(s))])
+        s,n = simpsonRule(a,b,e)
+        table.add_row([str(error(e)),str(n),str(dm.Decimal(s))])
     print(table)
     print("\n"*3)
 
