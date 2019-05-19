@@ -53,7 +53,7 @@ def determineNSimpson(a,b,e):
     m = M(a,b)
     v = (np.power((b-a),5)*m)/(e*180)
     v = np.power(v,(1./4.))
-    m = int(v)+2 if v%2==0 else int(v)+1
+    m = int(v)+2 if int(v)%2==0 else int(v)+1
     return m
 
 #Actual method
@@ -61,12 +61,10 @@ def simpsonRule(a,b,e):
     n = determineNSimpson(a,b,error(e))
     val = lambda x: 2 if (i%2==0) else 4
     h = (b-a)/n    
-    v = np.linspace(a,b,n)
-    v = v[1:-1]
-    s = 0.0
-    for i,x in enumerate(v):
-        s += val(i)*f(x)
-    return (h/3)*(f(a)+f(b)+s),n
+    s = f(a)+f(b)
+    for i in range(n):
+        s += val(i)*f(a+i*h)
+    return (h/3)*s,n
 
 
 '''-----------------------------------------------------------------------------
