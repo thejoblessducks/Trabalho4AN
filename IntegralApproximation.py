@@ -82,24 +82,23 @@ def rectangle(a,b,k,d=True):
     table.field_names = ["N","Approximation M="+str(m),"Error"]
 
     for i in range(1,k+1):
-        s,e = rectangleRule(a,b,i,m,d);
+        s,e = rectangleRule(a,b,2**i,m,d);
         er = '%.2E' %dm.Decimal(str(e))
-        table.add_row([str(i),str(dm.Decimal(s)),er])
+        table.add_row([str(2**i),str(dm.Decimal(s)),er])
     print(table)
     print("\n"*3)
 
 #Rectangle rule method
 def rectangleRule(a,b,n,m,d=True):
-    area = lambda c,d: (d-c)*(f(c)+f(d))/2#function for 2 point area
-
-    v = np.linspace(a,b,n)
+    step = (b-a)/n
     s = 0.0
-    for i in range(1,len(v)):
-        s += area(v[i-1],v[i])
+    for i in range(n):
+        s += f((a+step/2)+i*step)
+    s *= step
     #error calculation
     e = (np.power((b-a),2)/(n*2))*m
 
-    if d:#draw option
+    if d and n<=256:#draw option
         draw(a,b,n);
     return s,e
 #Draw f and approximation rectangles
